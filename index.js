@@ -96,7 +96,7 @@ function writePoint( line ) {
 	let xyz = line.slice( 0, 3 );
 	let [r, g, b] = line.slice( 4, line.length ).map( parseInt );
 
-	const rgb = new Float32Array( (new Uint8Array([r, g, b, 0])).buffer )[0];
+	const rgb = (r << 16) + (g << 8) + b;
 	const point = xyz.join(' ') + ' ' + rgb + '\n';
 
 	os.write( point, 'ascii' );
