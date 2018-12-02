@@ -1,0 +1,19 @@
+{
+  "name": "pts2pcd",
+  "version": "1.0.0",
+  "description": "convert pts to pcd",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://nfyfamr@github.com/nfyfamr/pts2pcd.git"
+  },
+  "author": "nfyfamr",
+  "license": "GNU 3.0",
+  "bugs": {
+    "url": "https://github.com/nfyfamr/pts2pcd/issues"
+  },
+  "homepage": "https://github.com/nfyfamr/pts2pcd#readme"
+}
