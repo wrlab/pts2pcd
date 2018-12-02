@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/nfyfamr/pts2pcd/issues"
   },
-  "homepage": "https://github.com/nfyfamr/pts2pcd#readme"
+  "homepage": "https://github.com/nfyfamr/pts2pcd#readme",
+  "dependencies": {
+    "line-by-line": "^0.1.6"
+  }
 }
