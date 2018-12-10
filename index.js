@@ -96,6 +96,7 @@ function writePoint( line ) {
 	let xyz = line.slice( 0, 3 );
 	let [r, g, b] = line.slice( 4, line.length ).map( parseInt );
 
+	const intensity = (line[3] + 2048) / 4096	// normalize ranging in 0 to 1, unused property
 	const rgb = ((r & 0x0000ff) << 16) | ((g & 0x0000ff) << 8) | (b & 0x0000ff);
 	const point = xyz.join(' ') + ' ' + rgb + '\n';
 
