@@ -56,6 +56,7 @@ lr.on('line', function (line) {
 				console.log( `Invalid output option. It should be '--binary' or '--ascii'.` );
 				process.exit(1);
 			}
+			console.log( `Writing as ${PCDHeader.DATA}...` );
 			
 			writePCDHeader();
 
