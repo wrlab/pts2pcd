@@ -18,9 +18,9 @@ const os = fs.createWriteStream( outputPath );
 let PCDHeader = {
 	VERSION: '0.7',			// fixed as 0.7
 	FIELDS: 'x y z rgb',	// fixed as 'x y z rgb'
-	SIZE: '4 4 4',			// fixed as float '4 4 4'
-    TYPE: 'F F F',			// fixed as float 'F F F'
-    COUNT: '1 1 1',			// fixed as '1 1 1'
+	SIZE: '4 4 4 4',			// fixed as float '4 4 4 4'
+    TYPE: 'F F F U',			// fixed as float 'F F F U'
+    COUNT: '1 1 1 1',			// fixed as '1 1 1 1'
     WIDTH: 0,				// equals with POINTS header
     HEIGHT: 1,				// fixed as 1
     VIEWPOINT: '0 0 0 1 0 0 0',	// fixed as '0 0 0 1 0 0 0'
@@ -125,7 +125,7 @@ function writePoint( line ) {
 		
 	} else {
 	
-		const buffer = new ArrayBuffer( 12 + 3 );
+		const buffer = new ArrayBuffer( 12 + 4 );
 		const view = new DataView( buffer );
 		
 		// Write xyz
@@ -137,6 +137,7 @@ function writePoint( line ) {
 		view.setUint8( 12, r );
 		view.setUint8( 13, g );
 		view.setUint8( 14, b );
+		view.setUint8( 15, 0 );
 		
 		// Write to file stream
 		const uint8Buffer = new Uint8Array( buffer );
