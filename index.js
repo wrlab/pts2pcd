@@ -1,5 +1,6 @@
 const fs = require( 'fs' );
 const LineByLineReader = require('line-by-line');
+const ProgressBar = require('progress');
 
 if (process.argv.length < 3) {
 
@@ -29,6 +30,8 @@ let PCDHeader = {
 }
 let lineCount = 0;
 
+let bar = null;             // ProgressBar
+
 
 lr.on('error', function (err) {
 
@@ -42,7 +45,7 @@ lr.on('line', function (line) {
 	line = line.trim().split( ' ' );
 	if (line[0] !== '') {
 
-		if (lineCount === 0) {
+		if (bar === null) {
 
 			PCDHeader.WIDTH = line[0];
 			PCDHeader.POINTS = line[0];
@@ -59,17 +62,21 @@ lr.on('line', function (line) {
 			console.log( `Writing as ${PCDHeader.DATA}...` );
 			
 			writePCDHeader();
+			
+			bar = new ProgressBar('  processing [:bar] :current/:total :percent :etas', {
+				complete: '=',
+				incomplete: ' ',
+				width: 40,
+				total: Number(PCDHeader.POINTS),
+			});
 
 		} else {
 
 			writePoint( line );
+			
+			bar.tick();
 
 		}
-
-		if (lineCount % 1000000 === 0) {
-			console.log( `Proceeded until ${lineCount}...` );
-		}
-		++lineCount;
 
 	}
 
